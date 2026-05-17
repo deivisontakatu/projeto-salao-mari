@@ -157,15 +157,11 @@ export const Contact = () => {
                 </h3>
 
                 <p style={{ marginBottom: "15px", color: "#ccc" }}>
-                  📍 Salão Mari
+                  📍 R. Nelson Ferreira, 284 - Central Parque 4-LItapetininga - SP, 18207-110
                 </p>
 
                 <p style={{ marginBottom: "15px", color: "#ccc" }}>
-                  📞 (00) 00000-0000
-                </p>
-
-                <p style={{ marginBottom: "15px", color: "#ccc" }}>
-                  ✉ contato@salaomari.com
+                  ✉ perfumari.contato@gmail.com
                 </p>
 
                 <p style={{ color: "#ccc" }}>
