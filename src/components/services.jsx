@@ -1,31 +1,47 @@
 import React from "react";
 
-export const Services = (props) => {
+export const Services = () => {
+  const services = [
+    {
+      icon: "💇",
+      title: "Cortes",
+      text: "Cortes modernos e personalizados.",
+    },
+    {
+      icon: "✨",
+      title: "Hidratação",
+      text: "Tratamentos especiais para seus cabelos.",
+    },
+    {
+      icon: "🎨",
+      title: "Coloração",
+      text: "Técnicas modernas e produtos profissionais.",
+    },
+  ];
+
   return (
-    <div id="services" className="text-center">
+    <section id="services">
       <div className="container">
         <div className="section-title">
-          <h2>Our Services</h2>
+          <h2>Nossos Serviços</h2>
+
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed
-            dapibus leonec.
+            Atendimento profissional com foco em qualidade e experiência.
           </p>
         </div>
-        <div className="row">
-          {props.data
-            ? props.data.map((d, i) => (
-                <div key={`${d.name}-${i}`} className="col-md-4">
-                  {" "}
-                  <i className={d.icon}></i>
-                  <div className="service-desc">
-                    <h3>{d.name}</h3>
-                    <p>{d.text}</p>
-                  </div>
-                </div>
-              ))
-            : "loading"}
+
+        <div className="grid grid-3">
+          {services.map((service, index) => (
+            <div className="card" key={index}>
+              <div className="icon">{service.icon}</div>
+
+              <h3>{service.title}</h3>
+
+              <p>{service.text}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };

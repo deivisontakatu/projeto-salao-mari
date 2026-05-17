@@ -1,43 +1,32 @@
 import React from "react";
 
-export const About = (props) => {
+export const About = () => {
   return (
-    <div id="about">
+    <section id="about">
+
       <div className="container">
-        <div className="row">
-          <div className="col-xs-12 col-md-6">
-            {" "}
-            <img src="img/about.jpg" className="img-responsive" alt="" />{" "}
-          </div>
-          <div className="col-xs-12 col-md-6">
-            <div className="about-text">
-              <h2>About Us</h2>
-              <p>{props.data ? props.data.paragraph : "loading..."}</p>
-              <h3>Why Choose Us?</h3>
-              <div className="list-style">
-                <div className="col-lg-6 col-sm-6 col-xs-12">
-                  <ul>
-                    {props.data
-                      ? props.data.Why.map((d, i) => (
-                          <li key={`${d}-${i}`}>{d}</li>
-                        ))
-                      : "loading"}
-                  </ul>
-                </div>
-                <div className="col-lg-6 col-sm-6 col-xs-12">
-                  <ul>
-                    {props.data
-                      ? props.data.Why2.map((d, i) => (
-                          <li key={`${d}-${i}`}> {d}</li>
-                        ))
-                      : "loading"}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+
+        <div className="section-title">
+          <h2>Sobre o Salão Mari</h2>
+
+          <p>
+            Um espaço criado para proporcionar beleza,
+            conforto e bem-estar.
+          </p>
         </div>
+
+        <div className="about-box">
+          <p>
+            No Salão Mari acreditamos que cada cliente merece
+            um atendimento especial, com atenção aos detalhes,
+            técnicas modernas e um ambiente acolhedor.
+            Nosso objetivo é oferecer experiências que elevem
+            autoestima, confiança e satisfação.
+          </p>
+        </div>
+
       </div>
-    </div>
+
+    </section>
   );
 };

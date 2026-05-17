@@ -1,5 +1,4 @@
 import { useState } from "react";
-import emailjs from "emailjs-com";
 import React from "react";
 
 const initialState = {
@@ -7,159 +6,193 @@ const initialState = {
   email: "",
   message: "",
 };
-export const Contact = (props) => {
+
+export const Contact = () => {
   const [{ name, email, message }, setState] = useState(initialState);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setState((prevState) => ({ ...prevState, [name]: value }));
+
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
-  const clearState = () => setState({ ...initialState });
-  
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, email, message);
-    
-    {/* replace below with your own Service ID, Template ID and Public Key from your EmailJS account */ }
-    
-    emailjs
-      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", e.target, "YOUR_PUBLIC_KEY")
-      .then(
-        (result) => {
-          console.log(result.text);
-          clearState();
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+
+    console.log({
+      name,
+      email,
+      message,
+    });
+
+    alert("Mensagem enviada com sucesso!");
+
+    setState(initialState);
   };
+
   return (
     <div>
-      <div id="contact">
+      <section
+        id="contact"
+        style={{
+          padding: "80px 0",
+          backgroundColor: "#111",
+          color: "#fff",
+        }}
+      >
         <div className="container">
-          <div className="col-md-8">
-            <div className="row">
+          <div className="row">
+            {/* FORMULÁRIO */}
+            <div className="col-md-8">
               <div className="section-title">
-                <h2>Get In Touch</h2>
-                <p>
-                  Please fill out the form below to send us an email and we will
-                  get back to you as soon as possible.
+                <h2
+                  style={{
+                    marginBottom: "20px",
+                    fontSize: "36px",
+                  }}
+                >
+                  Entre em Contato
+                </h2>
+
+                <p
+                  style={{
+                    marginBottom: "40px",
+                    color: "#ccc",
+                    lineHeight: "1.8",
+                  }}
+                >
+                  Agende seu horário ou envie sua dúvida. Nossa equipe terá
+                  prazer em atender você.
                 </p>
               </div>
-              <form name="sentMessage" validate onSubmit={handleSubmit}>
+
+              <form onSubmit={handleSubmit}>
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">
                       <input
                         type="text"
-                        id="name"
                         name="name"
                         className="form-control"
-                        placeholder="Name"
+                        placeholder="Seu nome"
                         required
+                        value={name}
                         onChange={handleChange}
+                        style={{
+                          marginBottom: "20px",
+                          padding: "14px",
+                        }}
                       />
-                      <p className="help-block text-danger"></p>
                     </div>
                   </div>
+
                   <div className="col-md-6">
                     <div className="form-group">
                       <input
                         type="email"
-                        id="email"
                         name="email"
                         className="form-control"
-                        placeholder="Email"
+                        placeholder="Seu e-mail"
                         required
+                        value={email}
                         onChange={handleChange}
+                        style={{
+                          marginBottom: "20px",
+                          padding: "14px",
+                        }}
                       />
-                      <p className="help-block text-danger"></p>
                     </div>
                   </div>
                 </div>
+
                 <div className="form-group">
                   <textarea
                     name="message"
-                    id="message"
                     className="form-control"
-                    rows="4"
-                    placeholder="Message"
+                    rows="5"
+                    placeholder="Digite sua mensagem"
                     required
+                    value={message}
                     onChange={handleChange}
+                    style={{
+                      marginBottom: "20px",
+                      padding: "14px",
+                    }}
                   ></textarea>
-                  <p className="help-block text-danger"></p>
                 </div>
-                <div id="success"></div>
-                <button type="submit" className="btn btn-custom btn-lg">
-                  Send Message
+
+                <button
+                  type="submit"
+                  className="btn btn-lg"
+                  style={{
+                    background: "#fff",
+                    color: "#111",
+                    border: "none",
+                    padding: "12px 30px",
+                    fontWeight: "bold",
+                    borderRadius: "8px",
+                  }}
+                >
+                  Enviar Mensagem
                 </button>
               </form>
             </div>
-          </div>
-          <div className="col-md-3 col-md-offset-1 contact-info">
-            <div className="contact-item">
-              <h3>Contact Info</h3>
-              <p>
-                <span>
-                  <i className="fa fa-map-marker"></i> Address
-                </span>
-                {props.data ? props.data.address : "loading"}
-              </p>
-            </div>
-            <div className="contact-item">
-              <p>
-                <span>
-                  <i className="fa fa-phone"></i> Phone
-                </span>{" "}
-                {props.data ? props.data.phone : "loading"}
-              </p>
-            </div>
-            <div className="contact-item">
-              <p>
-                <span>
-                  <i className="fa fa-envelope-o"></i> Email
-                </span>{" "}
-                {props.data ? props.data.email : "loading"}
-              </p>
-            </div>
-          </div>
-          <div className="col-md-12">
-            <div className="row">
-              <div className="social">
-                <ul>
-                  <li>
-                    <a href={props.data ? props.data.facebook : "/"}>
-                      <i className="fa fa-facebook"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href={props.data ? props.data.twitter : "/"}>
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href={props.data ? props.data.youtube : "/"}>
-                      <i className="fa fa-youtube"></i>
-                    </a>
-                  </li>
-                </ul>
+
+            {/* INFORMAÇÕES */}
+            <div className="col-md-3 col-md-offset-1">
+              <div
+                style={{
+                  marginTop: "30px",
+                }}
+              >
+                <h3
+                  style={{
+                    marginBottom: "25px",
+                  }}
+                >
+                  Informações
+                </h3>
+
+                <p style={{ marginBottom: "15px", color: "#ccc" }}>
+                  📍 Salão Mari
+                </p>
+
+                <p style={{ marginBottom: "15px", color: "#ccc" }}>
+                  📞 (00) 00000-0000
+                </p>
+
+                <p style={{ marginBottom: "15px", color: "#ccc" }}>
+                  ✉ contato@salaomari.com
+                </p>
+
+                <p style={{ color: "#ccc" }}>
+                  Atendimento com qualidade, conforto e cuidado para você.
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div id="footer">
-        <div className="container text-center">
-          <p>
-            &copy; 2023 Issaaf Kattan React Land Page Template. Design by{" "}
-            <a href="http://www.templatewire.com" rel="nofollow">
-              TemplateWire
-            </a>
+      </section>
+
+      {/* FOOTER */}
+      <footer
+        id="footer"
+        style={{
+          background: "#000",
+          color: "#999",
+          padding: "20px 0",
+          textAlign: "center",
+        }}
+      >
+        <div className="container">
+          <p style={{ margin: 0 }}>
+            © 2026 Salão Mari — Todos os direitos reservados.
           </p>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };
